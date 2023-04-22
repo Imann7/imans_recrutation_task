@@ -19,12 +19,13 @@
    width: 100%;
 }
 
+/* Made the text visible */
 .register-content-text-thin {
    font-weight: 300;
    font-size: 38px;
    line-height: 44px;
    text-align: center;
-   color: #FFFFFF;
+   color: #000;
 }
 
 .register-content-button {
@@ -36,11 +37,14 @@
 .register-content-button-reg {
    padding: 2rem 1rem;
    width: 20%;
+ 
 }
 
 .register-content-button-reg > a {
    width: -webkit-fill-available;
    font-size: 20px;
+  
+
 }
 
 /* Join page - benefits component */
@@ -49,7 +53,6 @@
    display: flex;
    margin-top: -15px;
 }
-
 
 .benefits-content, .join-content, .map-content, .join-dynamights-content, .cta-content, .testimonials-content {
     text-align: center;
@@ -121,13 +124,30 @@
     min-width: min-content;
 }
 
+@media only screen and (max-width: 900px) {
+
+  .benefits-content-list {
+       display: grid;
+       grid-template-columns: repeat(3, 1fr);
+       justify-items: center;
+           }
+
+         }
+
 .benefits-content-list-icon {
     padding-bottom: 10px;
 }
 
 .benefits-content-list-icon > img {
     height: 60px;
+       /* Added transition for icon */
+       transition: transform 0.2s;
 }
+
+  /* Making icons bigger on hover */
+  .benefits-content-list-icon:hover>img {
+      transform: scale(1.1);
+    }
 
 .benefits-content-list-description, .benefits-content-list-description-blue {
     font-style: normal;
@@ -189,7 +209,10 @@
 
 .map-wrapper {
    display: flex;
+   flex-direction: column;
 }
+
+
 
 .map-content-image {
    padding: 0px 20px;
@@ -212,7 +235,8 @@
 }
 
 .map-content-text-1 {
-   width: calc(100% / 3 - 10px);
+  /* Changed calc(100% / 3 - 10px) to calc(100% / 3) so the button and map-content-texts are properly centered*/
+   width: calc(100% / 3);
    display: flex;
    font-size: 20px;
    line-height: 30px;
@@ -220,6 +244,38 @@
    justify-content: center;
 }
 
+/* new button container element */
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+/* Violet button style */
+
+.violet-btn {
+    width: 175px;
+    height: 46px;
+    background-color: #9700d3;
+    border-radius: 12px;
+    border: none;
+    color: white;
+    padding: 10px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 17.5px;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.violet-btn:hover {
+    text-decoration: none;
+    color: #000;
+    background-color: #D6D6D6;
+}
 /*Join page - Testimonials component*/
 
 .testimonials-wrapper {
@@ -232,7 +288,7 @@
 }
 
 .testimonials-title-light {
-    color: white;
+    color: #000;
 }
 
 #testimonials-carousel {
@@ -288,9 +344,9 @@
    height: 170px;
    margin-bottom: 10px;
 }
-
+/* Made the text visible */
 .testimonials-picture-name {
-   color: white;
+   color: #000;
 }
 
 .testimonials-picture-name > h2 {
@@ -311,7 +367,7 @@
 
 #testimonials-carousel > .carousel-indicators > li {
     display: inline-block;
-    width: calc(100% / 4 - 50px);
+    width: calc(100% / 5 - 50px);
     height: 0.6rem;
     margin: 20px;
     text-indent: -999px;
@@ -323,7 +379,7 @@
 
 #testimonials-carousel .carousel-indicators .active {
     display: inline-block;
-    width: calc(100% / 4 - 50px);
+    width: calc(100% / 5 - 50px);
     height: 0.6rem;
     margin: 20px;
     text-indent: -999px;
@@ -532,10 +588,12 @@
         text-decoration: none;
 }
 
+/* Did some changes in buttons */
 .lia-button-third {
-    background: #FFFFFF;
+    background: #1966FF;
     border: 2px solid #FFFFFF; 
-    color: #000000;
+    color: white;
+    transition: 0.3s ease-in-out;
     
 }
     
@@ -549,15 +607,16 @@
 }
 
 .lia-button-forth {
-    background: none;
-    border: 2px solid #FFFFFF;
-    color: #FFFFFF;
+    background-color: white;
+    border: 2px solid #000;
+    color: #000;
+    transition: 0.3s ease-in-out;
 }    
     
 .lia-button-forth:hover {
-        background: #FFFFFF;
-        border: 2px solid #FFFFFF;
-        color: #000000;
+        background: #000;
+        
+        color: white;
         font-weight: 600;
         text-decoration: none;
 }
@@ -688,6 +747,33 @@ span.lia-button-link-arrow.lia-button-link-arrow-black {
 <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script defer src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet preconnect">
+<script>
+
+    // Created function 
+    function addGoogleMapsButton() {
+      // Reference to map element
+      const mapElement = document.getElementById('map');
+  
+      // Created div for button container and set class name
+      const btnContainer = document.createElement('div');
+      btnContainer.className = 'btn-container';
+  
+      // Create anchor element for button, set class, text, href, target
+      const violetBtn = document.createElement('a');
+      violetBtn.className = 'violet-btn';
+      violetBtn.textContent = 'Google Maps';
+      violetBtn.href = 'https://www.google.com/maps';
+      violetBtn.target = '_blank';
+  
+      // Appending
+      btnContainer.appendChild(violetBtn);
+      mapElement.appendChild(btnContainer);
+    }
+
+    //Call function after window load
+    window.onload = addGoogleMapsButton;
+  </script>
+
 
 </head>
 <body>
@@ -802,7 +888,7 @@ span.lia-button-link-arrow.lia-button-link-arrow-black {
   <img src="https://community.dynatrace.com/html/assets/wave-blue-2.png">
 </div>
 
-<div class="map-wrapper">
+<div class="map-wrapper" id="map">
   <div class="map-content">
     <div class="map-content-title">
       <div class="map-content-title-light">
@@ -835,12 +921,14 @@ span.lia-button-link-arrow.lia-button-link-arrow-black {
    </div>
 <div id="testimonials-carousel" class="carousel slide" data-ride="carousel">
 
-  <ol class="carousel-indicators">
-    <li data-target="#testimonials-carousel" data-slide-to="0" class="active"></li>
-    <li data-target="#testimonials-carousel" data-slide-to="1"></li>
-    <li data-target="#testimonials-carousel" data-slide-to="2"></li>
-    <li data-target="#testimonials-carousel" data-slide-to="3"></li>
-  </ol>
+    <ol class="carousel-indicators">
+        <li data-target="#testimonials-carousel" data-slide-to="0" class="active"></li>
+        <li data-target="#testimonials-carousel" data-slide-to="1"></li>
+        <li data-target="#testimonials-carousel" data-slide-to="2"></li>
+        <li data-target="#testimonials-carousel" data-slide-to="3"></li>
+        <!--Added new indicator for fifth slide in carousel-->
+        <li data-target="#testimonials-carousel" data-slide-to="4"></li>
+      </ol>
 
   <div class="carousel-inner">
     <div class="item active">
@@ -926,6 +1014,30 @@ span.lia-button-link-arrow.lia-button-link-arrow-black {
         </div>
      </div>
     </div>
+
+    <div class="item">
+        <div class="testimonials-quote-wrap">
+         <div class="testimonials-quote-element">
+           <div class="testimonials-quote">
+             <p>As a dedicated and hardworking second-year Computer Science student, I am eager to gain practical experience through internships and other opportunities.</p>
+             <img class="testimonial-quote-mark-1" src="https://community.dynatrace.com/html/assets/quote_black.png">
+             <img class="testimonial-quote-mark-2" src="https://community.dynatrace.com/html/assets/quote_black.png">
+           </div>
+         </div>
+           <div class="testimonials-picture">
+             <div class="testimonials-picture-avatar">
+                  <!--Changed the carousel picture-->
+               <img src="https://media.licdn.com/dms/image/D4D35AQHQcx8dGzdQSw/profile-framedphoto-shrink_400_400/0/1680263580636?e=1682805600&v=beta&t=Gi6Cp0-HxEX8tJISUrbsK9VqMffjuuvmrw68E59Cid0"></img>
+             </div>
+             <div class="testimonials-picture-name">
+                  <!--*New Text-->
+                  
+               <h2>Iman Allahverdiyev</h2>
+               <p>Frontend Developer</p>
+             </div>
+           </div>
+        </div>
+       </div>
 
   <a class="left carousel-control" href="#testimonials-carousel" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -1034,6 +1146,5 @@ span.lia-button-link-arrow.lia-button-link-arrow-black {
     </div>
   </div>
 </div>
-
 </body>
 </html>
