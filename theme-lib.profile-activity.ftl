@@ -1,4 +1,4 @@
-<#-- custom profile activity -->
+<#-- custom profile activityy -->
 <#import "theme-lib.common-functions.ftl" as commonUtils />
 <#import "theme-lib.profile-activity-macros.ftl" as messageUtils />
  
