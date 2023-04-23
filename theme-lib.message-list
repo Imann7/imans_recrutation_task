@@ -7,13 +7,19 @@
 <#assign sorting = http.request.parameters.name.get("sort", "") />
  
 <#-- page size -->
-<#assign pageSize = coreNode.settings.name.get("layout.messages_per_page_linear", "10")?number />
-<#if user.registered>
-   <#assign pageSizeUser = settings.name.get("layout.messages_per_page_linear") />
-   <#if pageSizeUser?number != pageSize?number>
-       <#assign pageSize = pageSizeUser />
-   </#if>
-</#if>
+<#-- Setting page size to 30 -->
+<#assign pageSize = 30 />
+
+<#-- The condition commented out because the page size set always to 30  -->
+<#-- 
+  <#if user.registered>
+    <#assign pageSizeUser = settings.name.get("layout.messages_per_page_linear") />
+    <#if pageSizeUser?number != pageSize?number>
+        <#assign pageSize = pageSizeUser />
+    </#if>
+  </#if> 
+-->
+
  
 <#if webuisupport.path.parameters.name.get("label-name")??>
    <#assign label = webuisupport.path.parameters.name.get("label-name").getText() />
@@ -149,7 +155,8 @@
        <#assign msg_status_txt = "theme-lib.general.thread-floated" />
    </#if>
    <#if msg.conversation.solved>
-       <#assign solved = "custom-thread-solved" />
+        <#-- Assigned new class name  -->
+       <#assign solved = "new-thread-solved" />
        <#assign msg_status_icon = "custom-thread-solved" />
        <#assign msg_status_txt = "theme-lib.general.thread-solved" />
    </#if>
