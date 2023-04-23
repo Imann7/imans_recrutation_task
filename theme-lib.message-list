@@ -10,7 +10,7 @@
 <#-- Setting page size to 30 -->
 <#assign pageSize = 30 />
 
-<#-- The condition commented out because the page size set always to 30  -->
+<#-- The If condition commented out because the page size set always to 30  -->
 <#-- 
   <#if user.registered>
     <#assign pageSizeUser = settings.name.get("layout.messages_per_page_linear") />
@@ -82,6 +82,17 @@
                    <option value="views" <#if sorting == 'views'>selected</#if>>${text.format("theme-lib.community-activity.views")}</option>
                    <option value="replies" <#if sorting == 'replies'>selected</#if>>${text.format("theme-lib.community-activity.replies")}</option>
                    <option value="kudos" <#if sorting == 'kudos'>selected</#if>>${text.format("theme-lib.community-activity.kudos")}</option>
+                   
+                   <#-- Added additional sorting methods to the post list -->
+                   
+                    <#-- Sorting by post time, from newest to oldest -->
+                   <option value="postTime" <#if sorting == 'postTime'>selected</#if>>${text.format("theme-lib.community-activity.postTime")}</option>
+                    <#-- Sorting by the lowest number of kudos -->
+                   <option value="lowKudos" <#if sorting == 'lowKudos'>selected</#if>>${text.format("theme-lib.community-activity.lowKudos")}</option>
+                    <#-- Sorting by unanswered questions -->
+                   <option value="unAnswered" <#if sorting == 'unAnswered'>selected</#if>>${text.format("theme-lib.community-activity.unAnswered")}</option>
+                    <#-- Sorting by questions with no solution -->
+                   <option value="unSolved" <#if sorting == 'unSolved'>selected</#if>>${text.format("theme-lib.community-activity.unSolved")}</option>
                </select>
                <#if page.interactionStyle=="idea">
                  <@component id="custom.idea.status.label" />
