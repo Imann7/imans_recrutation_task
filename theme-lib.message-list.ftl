@@ -40,19 +40,9 @@
 <#assign basePagingQry = "SELECT count(*) FROM messages WHERE depth = 0 AND board.id = '${coreNode.id}' " />
 <#assign whereClause = label_query />
  
+
 <#switch sorting>
-   <#case "kudos">
-       <#assign orderClause = "ORDER BY kudos.sum(weight) DESC " />
-   <#break>
-   <#case "views">
-       <#assign orderClause = "ORDER BY metrics.views DESC " />
-   <#break>
-   <#case "replies">
-       <#assign orderClause = "ORDER BY replies.count(*) DESC " />
-   <#break>
-   <#default>
-       <#assign orderClause = "ORDER BY conversation.last_post_time DESC " />
-   <#break>
+
 </#switch>
  
 <#assign limitClause = "LIMIT ${pageSize} OFFSET ${offset}" />
@@ -168,7 +158,7 @@
    <#if msg.conversation.solved>
         <#-- Assigned new class name  -->
        <#assign solved = "new-thread-solved" />
-       <#assign msg_status_icon = "custom-thread-solved" />
+       <#assign msg_status_icon = "new-thread-solved" />
        <#assign msg_status_txt = "theme-lib.general.thread-solved" />
    </#if>
    <#if !msg.user_context.read>
