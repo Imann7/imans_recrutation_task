@@ -10,7 +10,7 @@
 <#-- Setting page size to 30 -->
 <#assign pageSize = 30 />
 
-<#-- The If condition commented out because the page size set always to 30  -->
+<#-- The If condition commented out because the page size set always to 30 and it is not necessary anymore  -->
 <#-- 
   <#if user.registered>
     <#assign pageSizeUser = settings.name.get("layout.messages_per_page_linear") />
@@ -42,7 +42,44 @@
  
 
 <#switch sorting>
-
+<#case "kudos">
+       <#assign orderClause = "ORDER BY kudos.sum(weight) DESC " />
+   <#break>
+   
+   <#case "views">
+       <#assign orderClause = "ORDER BY metrics.views DESC " />
+   <#break>
+   
+   <#case "replies">
+       <#assign orderClause = "ORDER BY replies.count(*) DESC " />
+   <#break>
+   
+     <#-- Task Sortings -->
+   <#--  Sorting by post time, from the newest to oldest  -->
+   <#case "postTime">
+        <#assign orderClause = "ORDER BY post_time DESC " />
+   <#break>
+   
+   <#-- Sorting by the lowest number of kudos  -->
+   <#case "lowestKudos">
+       <#assign orderClause = "ORDER BY kudos.sum(weight) ASC " />
+   <#break>
+   
+   <#--  Sorting by unanswered questions  -->
+   <#case "unAnswered">
+          <#assign orderClause = "ORDER BY replies.count(*) ASC " />
+   <#break>
+   
+    <#-- Sorting by questions with no solution -->
+   <#case "unSolved">
+        <#assign whereClause = whereClause + " AND conversation.solved = false " />
+       <#assign orderClause = "ORDER BY conversation.last_post_time DESC " />
+   <#break>
+   
+   <#default>
+       <#assign orderClause = "ORDER BY conversation.last_post_time DESC " />
+   <#break>
+   
 </#switch>
  
 <#assign limitClause = "LIMIT ${pageSize} OFFSET ${offset}" />
