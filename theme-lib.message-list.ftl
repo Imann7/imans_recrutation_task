@@ -10,7 +10,7 @@
 <#-- Setting page size to 30 -->
 <#assign pageSize = 30 />
 
-<#-- The If condition commented out because the page size set always to 30 and it is not necessary anymore  -->
+<#-- The If condition commented out because the page size set always to 30 and it is not necessary anymore.  -->
 <#-- 
   <#if user.registered>
     <#assign pageSizeUser = settings.name.get("layout.messages_per_page_linear") />
