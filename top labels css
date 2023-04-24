@@ -1,11 +1,14 @@
 .lia-quilt-column-side-content .lia-labels-list-sortable .lia-panel-heading-bar .dropdown-default-item .default-menu-option {
-    color: #1966FF;
+
+/* We disable clickability by setting the pointer-events property to none and removing the color to make the text black. */
     font-size: 20px;
     font-weight: bold;
     padding: 0;
+    pointer-events:none;
 }
 
 .lia-quilt-column-side-content .lia-labels-list-sortable .lia-panel-heading-bar .dropdown-default-item .default-menu-option:after {
-    color: #1966FF;
-    margin-left: 10px;
+    
+    /* For hiding the dropdown arrow we use display property and set it to none */
+    display:none;
 }
