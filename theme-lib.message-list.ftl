@@ -61,7 +61,7 @@
    <#break>
    
    <#-- Sorting by the lowest number of kudos  -->
-   <#case "lowestKudos">
+   <#case "lowKudos">
        <#assign orderClause = "ORDER BY kudos.sum(weight) ASC " />
    <#break>
    
